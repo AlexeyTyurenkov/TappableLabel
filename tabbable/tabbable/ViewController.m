@@ -17,6 +17,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UIColor* fgColor = [UIColor greenColor];
+    UIColor* bgColor = [UIColor orangeColor];
+    UIFont* fontSize = [UIFont systemFontOfSize:16];
+
+    NSDictionary* style = @{
+                            NSForegroundColorAttributeName: fgColor,
+                            NSBackgroundColorAttributeName: bgColor,
+                            NSFontAttributeName: fontSize
+                            };
+    
+    NSAttributedString* myString = [[NSAttributedString alloc] initWithString:@"Touch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code Magazine"
+                                                                   attributes:style];
+    self.specialLabel.numberOfLines = 0;
+    self.cintrolLabel.numberOfLines = 0;
+    self.cintrolLabel.attributedText = myString;
+    self.specialLabel.attributedText = myString;
 }
 
 - (void)didReceiveMemoryWarning {

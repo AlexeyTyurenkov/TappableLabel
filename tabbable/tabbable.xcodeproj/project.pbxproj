@@ -14,8 +14,7 @@
 		D9A7BD9B1B18E97800191BC2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9A7BD9A1B18E97800191BC2 /* Images.xcassets */; };
 		D9A7BD9E1B18E97800191BC2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A7BD9C1B18E97800191BC2 /* LaunchScreen.xib */; };
 		D9A7BDAA1B18E97800191BC2 /* tabbableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A7BDA91B18E97800191BC2 /* tabbableTests.m */; };
-		D9A7BDB61B18EA3400191BC2 /* TapLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A7BDB51B18EA3400191BC2 /* TapLayoutManager.m */; };
-		D9A7BDB91B18EA8900191BC2 /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A7BDB81B18EA8900191BC2 /* TappableLabel.m */; };
+		D9A7BDBC1B18EF7000191BC2 /* SpecialLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A7BDBB1B18EF7000191BC2 /* SpecialLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +41,8 @@
 		D9A7BDA31B18E97800191BC2 /* tabbableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tabbableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A7BDA81B18E97800191BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9A7BDA91B18E97800191BC2 /* tabbableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tabbableTests.m; sourceTree = "<group>"; };
-		D9A7BDB41B18EA3400191BC2 /* TapLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapLayoutManager.h; path = TappableLAbel/TapLayoutManager.h; sourceTree = "<group>"; };
-		D9A7BDB51B18EA3400191BC2 /* TapLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapLayoutManager.m; path = TappableLAbel/TapLayoutManager.m; sourceTree = "<group>"; };
-		D9A7BDB71B18EA8900191BC2 /* TappableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TappableLabel.h; path = TappableLAbel/TappableLabel.h; sourceTree = "<group>"; };
-		D9A7BDB81B18EA8900191BC2 /* TappableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TappableLabel.m; path = TappableLAbel/TappableLabel.m; sourceTree = "<group>"; };
+		D9A7BDBA1B18EF7000191BC2 /* SpecialLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialLabel.h; sourceTree = "<group>"; };
+		D9A7BDBB1B18EF7000191BC2 /* SpecialLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +126,8 @@
 		D9A7BDB31B18E9A100191BC2 /* Tappable */ = {
 			isa = PBXGroup;
 			children = (
-				D9A7BDB41B18EA3400191BC2 /* TapLayoutManager.h */,
-				D9A7BDB51B18EA3400191BC2 /* TapLayoutManager.m */,
-				D9A7BDB71B18EA8900191BC2 /* TappableLabel.h */,
-				D9A7BDB81B18EA8900191BC2 /* TappableLabel.m */,
+				D9A7BDBA1B18EF7000191BC2 /* SpecialLabel.h */,
+				D9A7BDBB1B18EF7000191BC2 /* SpecialLabel.m */,
 			);
 			name = Tappable;
 			sourceTree = "<group>";
@@ -237,11 +232,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9A7BDB91B18EA8900191BC2 /* TappableLabel.m in Sources */,
 				D9A7BD961B18E97800191BC2 /* ViewController.m in Sources */,
 				D9A7BD931B18E97800191BC2 /* AppDelegate.m in Sources */,
 				D9A7BD901B18E97800191BC2 /* main.m in Sources */,
-				D9A7BDB61B18EA3400191BC2 /* TapLayoutManager.m in Sources */,
+				D9A7BDBC1B18EF7000191BC2 /* SpecialLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
