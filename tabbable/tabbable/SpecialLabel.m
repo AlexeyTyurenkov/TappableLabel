@@ -72,44 +72,85 @@
     NSLog(@"Tap");
     CGPoint tapLocation = [touch locationInView:self];
     NSLog(@"x = %f; y = %f ",tapLocation.x, tapLocation.y);
-    NSLog(@"%ld",(long)[self touchCharacter:tapLocation]);
+    NSLog(@"%ld",(long)[self characterIndexAtPoint:tapLocation]);
+
 }
 
 
-
-
-- (NSInteger)touchCharacter:(CGPoint)point
-{
-    NSInteger result = NSNotFound;
-
+- (CFIndex)characterIndexAtPoint:(CGPoint)p {
+    if (!CGRectContainsPoint(self.bounds, p)) {
+        return NSNotFound;
+    }
+    
     CGRect textRect = [self textRectForBounds:self.bounds limitedToNumberOfLines:self.numberOfLines];
-    CGPoint reversePoint = CGPointMake(point.x, self.frame.size.height-point.y);
+    if (!CGRectContainsPoint(textRect, p)) {
+        return NSNotFound;
+    }
+    
+    // Offset tap coordinates by textRect origin to make them relative to the origin of frame
+    p = CGPointMake(p.x - textRect.origin.x, p.y - textRect.origin.y);
+    // Convert tap coordinates (start at top left) to CT coordinates (start at bottom left)
+    p = CGPointMake(p.x, textRect.size.height - p.y);
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, NULL, textRect);
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.attributedText);
+        CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.attributedText);
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, (CFIndex)[self.attributedText length]), path, NULL);
+    if (frame == NULL) {
+        CFRelease(path);
+        return NSNotFound;
+    }
     
     CFArrayRef lines = CTFrameGetLines(frame);
+    NSInteger numberOfLines = self.numberOfLines > 0 ? MIN(self.numberOfLines, CFArrayGetCount(lines)) : CFArrayGetCount(lines);
+    if (numberOfLines == 0) {
+        CFRelease(frame);
+        CFRelease(path);
+        return NSNotFound;
+    }
     
-    CGPoint* lineOrigins = malloc(sizeof(CGPoint)*CFArrayGetCount(lines));
+    CFIndex idx = NSNotFound;
     
-    CTFrameGetLineOrigins(frame, CFRangeMake(0,0), lineOrigins);
+    CGPoint lineOrigins[numberOfLines];
+    CTFrameGetLineOrigins(frame, CFRangeMake(0, numberOfLines), lineOrigins);
     
-    for(CFIndex i = 0; i < CFArrayGetCount(lines); i++)
-    {
-        CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+    for (CFIndex lineIndex = 0; lineIndex < numberOfLines; lineIndex++) {
+        CGPoint lineOrigin = lineOrigins[lineIndex];
+        CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
         
-        CGPoint origin = lineOrigins[i];
-        if (reversePoint.y > origin.y) {
-            NSInteger index = CTLineGetStringIndexForPosition(line, reversePoint);
-            NSLog(@"index %ld", (long)index);
-            result = index;
+        // Get bounding information of line
+        CGFloat ascent = 0.0f, descent = 0.0f, leading = 0.0f;
+        CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+        CGFloat yMin = (CGFloat)floor(lineOrigin.y - descent);
+        CGFloat yMax = (CGFloat)ceil(lineOrigin.y + ascent);
+        
+        // Apply penOffset using flushFactor for horizontal alignment to set lineOrigin since this is the horizontal offset from drawFramesetter
+        CGFloat flushFactor = 0.0f;
+        CGFloat penOffset = (CGFloat)CTLineGetPenOffsetForFlush(line, flushFactor, textRect.size.width);
+        lineOrigin.x = penOffset;
+        
+        // Check if we've already passed the line
+        if (p.y > yMax) {
             break;
         }
+        // Check if the point is within this line vertically
+        if (p.y >= yMin) {
+            // Check if the point is within this line horizontally
+            if (p.x >= lineOrigin.x && p.x <= lineOrigin.x + width) {
+                // Convert CT coordinates to line-relative coordinates
+                CGPoint relativePoint = CGPointMake(p.x - lineOrigin.x, p.y - lineOrigin.y);
+                idx = CTLineGetStringIndexForPosition(line, relativePoint);
+                break;
+            }
+        }
     }
-    free(lineOrigins);
-    return result;
+    
+    CFRelease(frame);
+    CFRelease(path);
+    
+    return idx;
 }
+
+
 
 @end

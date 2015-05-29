@@ -29,10 +29,17 @@
     
     NSAttributedString* myString = [[NSAttributedString alloc] initWithString:@"Touch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code MagazineTouch Code Magazine"
                                                                    attributes:style];
+    NSDictionary* linkStyle = @{
+                                NSForegroundColorAttributeName: [UIColor purpleColor],
+                                NSFontAttributeName: [UIFont boldSystemFontOfSize:33]
+                                };
+    NSAttributedString* myLink = [[NSAttributedString alloc] initWithString:@" googl3 " attributes:linkStyle];
     self.specialLabel.numberOfLines = 0;
     self.cintrolLabel.numberOfLines = 0;
-    self.cintrolLabel.attributedText = myString;
-    self.specialLabel.attributedText = myString;
+    NSMutableAttributedString* concat = [[NSMutableAttributedString alloc] initWithAttributedString:myString];
+    [concat appendAttributedString:myLink];
+    self.cintrolLabel.attributedText = concat;
+    self.specialLabel.attributedText = concat;
 }
 
 - (void)didReceiveMemoryWarning {

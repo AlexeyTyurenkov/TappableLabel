@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -22,8 +23,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8p-aD-oX7" userLabel="SpecialLabel" customClass="SpecialLabel">
-                                <rect key="frame" x="279" y="74" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8p-aD-oX7" userLabel="SpecialLabel" customClass="SpecialLabel">
+                                <rect key="frame" x="16" y="74" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,11 +33,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="AKD-8T-mCX" secondAttribute="centerX" id="87A-Qn-9M0"/>
+                            <constraint firstItem="m8p-aD-oX7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hix-W5-jUe"/>
                             <constraint firstAttribute="centerX" secondItem="AKD-8T-mCX" secondAttribute="centerX" id="fN4-8D-yGo"/>
-                            <constraint firstAttribute="centerY" secondItem="m8p-aD-oX7" secondAttribute="centerY" constant="215.5" id="kJF-fz-QL3"/>
+                            <constraint firstAttribute="centerY" secondItem="m8p-aD-oX7" secondAttribute="centerY" constant="216" id="kJF-fz-QL3"/>
+                            <constraint firstItem="m8p-aD-oX7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="54" id="niU-c0-rne"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m8p-aD-oX7" secondAttribute="trailing" id="qvb-ke-AlT"/>
                             <constraint firstAttribute="centerY" secondItem="AKD-8T-mCX" secondAttribute="centerY" constant="10.5" id="vLH-W8-skB"/>
                             <constraint firstAttribute="centerX" secondItem="m8p-aD-oX7" secondAttribute="centerX" id="xXC-ao-mUL"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="kJF-fz-QL3"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="cintrolLabel" destination="AKD-8T-mCX" id="eY5-HH-4TQ"/>

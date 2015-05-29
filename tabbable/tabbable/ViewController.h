@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TappableLabel.h"
+
 #import "SpecialLabel.h"
 
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet TappableLabel *testLabel;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *cintrolLabel;
 @property (weak, nonatomic) IBOutlet SpecialLabel *specialLabel;
